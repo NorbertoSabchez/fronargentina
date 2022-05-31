@@ -10,21 +10,21 @@ import { Skills } from "../model/skills.model";
 })
 
 export class skillsService{
-    private apiServerUrl='https://apiportfolioback.herokuapp.com/'
+    private apiServerUrl='https://apiportfolioback.herokuapp.com';
 
     constructor(private http:HttpClient){}
 
         public obtenerSkill():Observable<Skills[]>{
-            return this.http.get<Skills[]>(`${this.apiServerUrl}skill/ver`);
+            return this.http.get<Skills[]>(`${this.apiServerUrl}/skill/ver`);
           }
         public agregarSkill(skills: Skills):Observable<Skills>{
-            return this.http.post<Skills>(`${this.apiServerUrl}skill/new`, skills);
+            return this.http.post<Skills>(`${this.apiServerUrl}/skill/new`, skills);
         }
         public editarSkill(skills: Skills):Observable<Skills>{
-            return this.http.put<Skills>(`${this.apiServerUrl}skill/editar`, skills);
+            return this.http.put<Skills>(`${this.apiServerUrl}/skill/editar`, skills);
         }
         public borrarSkill(idSkill: number):Observable<void>{
-            return this.http.delete<void>(`${this.apiServerUrl}skill/delete/${idSkill}`);
+            return this.http.delete<void>(`${this.apiServerUrl}/skill/delete/${idSkill}`);
         }
 
     }

@@ -12,7 +12,7 @@ import { JwtDTO } from '../model/jwt-dto';
 })
 export class AuthService {
 
-  authURL = 'https://apiportfolioback.herokuapp.com//auth/';
+  authURL = 'https://apiportfolioback.herokuapp.com/auth/';
 
   constructor(private httpClient: HttpClient) { }
 

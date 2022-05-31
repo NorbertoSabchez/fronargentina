@@ -11,13 +11,13 @@ import { persona } from '../model/persona';
 
 
   export class personaService {
-    private apiServerUrl='https://apiportfolioback.herokuapp.com/'
+    private apiServerUrl='https://apiportfolioback.herokuapp.com';
         constructor(private http:HttpClient){ }
 
         public obtenerPersona():Observable<persona[]>{
-            return this.http.get<persona[]>(`${this.apiServerUrl}persona/` + "ver" );
+            return this.http.get<persona[]>(`${this.apiServerUrl}/persona/` + "ver" );
           }
           public editarPersona(persona: persona):Observable<persona>{
-            return this.http.put<persona>(`${this.apiServerUrl}persona/editar`, persona);
+            return this.http.put<persona>(`${this.apiServerUrl}/persona/editar`, persona);
         }
   }
