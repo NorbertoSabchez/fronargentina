@@ -1,0 +1,43 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" >
+    <div class="container-fluid" *ngFor="let perso of persona">
+      <a class="navbar-brand" href="#" *ngIf="isLogged">{{perso.nombre}} {{perso.apellido}}</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#experiencias">Exp y proyectos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#educacion">Estudios</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#hardSkils">Skills</a>
+          </li>
+        </ul>
+        <span class="navbar-text">
+          <ul class="navbar-nav ms-2 iconos">
+            <li class="nav-item">
+              <a class="nav-link" href={{perso.link}}><i class="fa-brands fa-linkedin"></i></a>
+            </li>
+            <li class="nav-item"*ngIf="isLogged">
+              <a class="nav-link" href={{perso.git}}><i class="fa-brands fa-github"></i></a>
+            </li>
+            <li class="nav-item"*ngIf="isLogged">
+              <a class="nav-link" href="{{perso.arg}}"><img class="logo" src="assets/ArgPro.png" alt=""></a>
+            </li>
+            <li class="nav-item"*ngIf="!isLogged">
+              <a class="nav-link active" ><i class="fas fa-sing-in-alt"></i>Iniciar Sesión</a>
+            </li>
+            <li class="nav-item" *ngIf="isLogged" (click)="onLogOut()">
+              <a class="nav-link" style="cursor: pointer;"><i class="fas fa-door-open" ></i> Cerrar Sesión</a>
+            </li>
+          </ul>
+        </span>
+      </div>
+    </div>
+  </nav>

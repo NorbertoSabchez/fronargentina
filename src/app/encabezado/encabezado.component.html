@@ -1,0 +1,10 @@
+<section id="encabezado" class="container" *ngFor="let perso of persona">
+    <div class="ini-cont">
+      <img [src]="perso.img" alt="" class="img-ini">
+      <div class="ini-text">
+        <h1 class="text1"> {{perso.nombre}} {{perso.apellido}}</h1>
+        <h4 class="text2">{{perso.rol}}</h4>
+      </div>
+    </div>
+
+</section>

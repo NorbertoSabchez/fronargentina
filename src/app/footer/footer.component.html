@@ -1,0 +1,20 @@
+<footer class="bg-dark text-white" *ngFor="let perso of persona">
+    <div class="container">
+      <nav class="row">
+        <a href="#" class=" nav-link m-5 col-2 text-reset text-uppercase d-flex aling-items-centers">{{perso.nombre}} {{perso.apellido}}</a>
+        <ul class="col-6 list-unstyled">
+          <li class="mt-3 font-weigth-bold text-uppercase">Secciones</li>
+          <li><a href="#" class="nav-link text-reset">Inicio</a></li>
+          <li><a href="#experiencias" class=" nav-link text-reset">Exp y proyectos</a></li>
+          <li><a href="#educacion" class=" nav-link text-reset">Estudios</a></li>
+          <li><a href="#hardSkils" class="nav-link text-reset">Skills</a></li>
+        </ul>
+        <ul class="mt-3 col-3 list-unstyled">
+          <li class="font-weigth-bold text-uppercase">Contacto</li>
+          <li>Telefono: +549{{perso.tel}}</li>
+          <li>Mail: {{perso.mail}}</li>
+          <li><a href={{perso.link}} class="text-reset"><i class="fa-brands fa-linkedin"></i></a><a href="{{perso.git}}" class="text-reset"><i class="fa-brands fa-github"></i></a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer> 

@@ -1,0 +1,43 @@
+<section id="acerca de" class="gris" *ngFor="let perso of persona">
+    <h1>Sobre mi persona</h1>
+    <br>
+    <a *ngIf="isAdmin" (click)="onOpenModal('edit', perso)" class="btn btn-primary"  data-placementtype="button" data-bs-toggle="modal" data-bs-target="#editpersoModal" data-bs-whatever="@mdo"><i class="fa fa-pencil"></i></a>
+    <p>{{perso.sobreMi}}</p>
+  </section>
+
+
+    <!--Editar-->
+  
+  <!-- Add Employee Modal -->
+  
+  <div class="modal fade" id="editpersoModal" tabindex="-1" aria-labelledby="editExpModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editExpModalLabel">Editar sobre {{editar?.nombre}}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form #editForm="ngForm">
+             <div class="form-group">
+                <label for="sobreMi">Sobre mi</label>
+                <textarea cols="20" rows="10" type="text-area" ngModel="{{editar?.sobreMi}}" name="sobreMi" class="form-control" id="sobreMi" placeholder="sobreMi"></textarea>
+             </div>
+             <input type="hidden" ngModel="{{editar?.id}}" name="id" class="form-control" id="id" placeholder="id">
+             <input type="hidden" ngModel="{{editar?.nombre}}" name="nombre" class="form-control" id="nombre" placeholder="nombre">
+             <input type="hidden" ngModel="{{editar?.apellido}}" name="apellido" class="form-control" id="apellido" placeholder="apellido">
+             <input type="hidden" ngModel="{{editar?.rol}}" name="rol" class="form-control" id="rol" placeholder="rol">
+             <input type="hidden" ngModel="{{editar?.arg}}" name="arg" class="form-control" id="arg" placeholder="arg">
+             <input type="hidden" ngModel="{{editar?.link}}" name="link" class="form-control" id="link" placeholder="link">
+             <input type="hidden" ngModel="{{editar?.git}}" name="git" class="form-control" id="git" placeholder="git">
+             <input type="hidden" ngModel="{{editar?.tel}}" name="tel" class="form-control" id="tel" placeholder="tel">
+             <input type="hidden" ngModel="{{editar?.mail}}" name="mail" class="form-control" id="mail" placeholder="mail">
+             <input type="hidden" ngModel="{{editar?.img}}" name="img" class="form-control" id="img" placeholder="img">
+                <button type="button" id="" data-bs-dismiss="modal" class="btn btn-secondary">Close</button>
+                <button (click)="onUpdateExp(editForm.value)" data-bs-dismiss="modal" class="btn btn-primary" >Save changes</button>
+             
+          </form>
+       </div>
+      </div>
+    </div>
+  </div>

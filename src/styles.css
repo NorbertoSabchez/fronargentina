@@ -1,1 +1,290 @@
-/* You can add global styles to this file, and also import other style files */
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+.info-proyecto{
+    color: black;
+}
+
+h5 {
+    color: white;
+    font-weight: bolder;
+    background-color: #2E4053;
+    border-radius: 5px;
+}
+.est-flex{
+    display: flex;
+    justify-content: space-between;
+}
+.iconos{
+    display: flex;
+    flex-flow: wrap;
+}
+
+#encabezado{
+
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    max-width: 100%;
+    background-image: linear-gradient(135deg,#1C2833,#4A235A,#4A235A,#9B59B6);
+    animation: banimado 15s;
+    background-size: 500%;
+}
+
+@keyframes banimado {
+    0%{
+        background-position: 0% 50%;
+    }
+    50%{
+        background-position: 100% 50%;
+    }
+}
+
+
+.ini-cont{
+    display: flex;
+    justify-content: center;
+    margin: 7%;
+}
+
+
+.ini-text{
+    color: white;
+    margin-top: 9%;
+}
+.img-ini{
+    height: 12.5em;
+    width: 12.5em;
+    border-radius: 50%;
+    padding: 15px;
+}
+.logo{
+    max-height: 3em;
+    width: 6em;
+    margin-left: 5px;
+}
+
+.redes{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.fa-brands, .fa-solid{
+    color: whitesmoke;
+    font-size: 1.5em;
+    margin: 12px;
+}
+
+.gris{
+    background-color: #ECF0F1;
+    justify-content: center;
+    align-items: center;
+    display: block;
+    text-align: center;
+    padding: 10px;
+}
+
+.violeta{
+
+    background-color: #7D3C98;
+    justify-content: center;
+    align-items: center;
+    display: block;
+    text-align: center;
+    padding: 10px;
+    color: white;
+}
+
+.p-cont,.p-hab{
+    display: flex;
+    flex-flow: wrap;
+    justify-content: center;
+    padding: auto;
+    margin: auto;
+}
+
+.p-cont > .card{
+    margin: 15px;
+}
+
+
+.btn-violeta{
+    background-color: #363d44;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    display: inline-block;
+    border: 1px solid transparent;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    border-radius: 0.25rem;
+    text-decoration: none;
+    margin: 1em;
+}
+
+.btn-violeta:hover{
+    color: white;
+    background-color: black;
+}
+
+.text1{
+    position: relative;
+    animation: text 3s 1;
+}
+
+.text2{
+    animation: text 6s 1;
+}
+
+@keyframes text {
+    0%{
+        opacity: 0;
+        margin-bottom: -40px;
+    }
+}
+
+.slider{
+    background-color: #7D3C98;
+    width: 80%;
+    height: 100px;
+    overflow: hidden;
+    position: relative;
+    margin: auto;
+    margin-bottom: 30px;
+}
+
+.slider::before,.slider::after{
+    content: '';
+    position: absolute;
+    width: 15%;
+    height: 100px;
+    z-index: 2;
+    background: linear-gradient(to right, #7D3C98 0%, rgba(255,255,255,0) 100%);
+}
+
+.slider::before{
+    top: 0;
+    left: 0;
+}
+
+.slider::after{
+    top: 0;
+    right: 0;
+    transform: rotateZ(180deg);
+}
+
+.slider .slider-track{
+    display: flex;
+    width: calc(256px * 14);
+    animation: scroll 20s infinite linear;
+}
+
+
+@keyframes scroll {
+    0%{
+        transform: translateX(0%);
+    }
+    100%{
+        transform: translateX(calc(-256px * 7));
+    }
+}
+
+.tec{
+    font-size: 80px;
+    width: 250px;
+    color: white;
+}
+
+.tec2{
+    font-size: 80px;
+    width: 250px;
+    color: #1C2833;
+}
+
+h1, h2{
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+ .habilidad{
+     display: block;
+     margin: 5px;
+ }
+
+ .habilidad:hover span{
+    transform: scaleX(0);
+    transform-origin: left;
+    animation: progres 1s cubic-bezier(1,0,0.5,1) forwards;
+ }
+
+ 
+.p-line{
+    height: 15px;
+    width: 100%;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+
+
+.p-line span{
+    height: 100%;
+    background:#7D3C98;
+    border-radius: 10px;
+    display: flex;
+    transform: scaleX(0);
+    transform-origin: left;
+    font: 12px bold;
+    font-family: 'Roboto', sans-serif;
+    color: white;
+    text-align: center;
+}
+
+.p-line span::before{
+    display: flex;
+    content: '';
+    height: 0;
+    width: 0;
+    border: 7px solid transparent;
+}
+
+.avanzado span{
+    width: 100%;
+}
+
+
+
+.medio span{
+    width: 50%;
+}
+
+.basico span{
+    width: 25%;
+}
+
+
+
+@keyframes progres {
+    100%{
+        transform: scaleX(1);
+    }
+}
+
+.edu-ico{
+    width: 5%;
+    height: 5%;
+}
+
+.arg{
+    width: 10%;
+    height: 10%;
+}
+
+
+
+
+

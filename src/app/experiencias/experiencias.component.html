@@ -1,0 +1,124 @@
+<section id="experiencias" class="violeta">
+    <h1>Experiencias y proyectos</h1>
+    <button *ngIf="isAdmin" type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addExpModal" data-bs-whatever="@mdo"><i class="fa-solid fa-plus"></i></button>
+    <div class="p-cont" >
+      <table class="table table-hover table-dark" >
+        <thead>
+          <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Descripción</th>
+            <th scope="col">Link a proyecto</th>
+            <th scope="col">Link a repositorio</th>
+            <th scope="col" *ngIf="isAdmin">Editar</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let exp of exps">
+          <tr>
+            <th scope="row">{{exp.nomExp}}</th>
+            <td>{{exp.descExp}}</td>
+            <td><a [href]="exp.linkExp" class="btn btn-primary">Web</a></td>
+            <td><a [href]="exp.repoExp" class="btn btn-primary">Repositorio</a></td>
+            <td><a *ngIf="isAdmin"(click)="onOpenModal('edit', exp)" class="btn btn-secondary" data-placementtype="button" data-bs-toggle="modal" data-bs-target="#editExpModal" data-bs-whatever="@mdo"><i class="fa fa-pencil"></i></a>
+              <a *ngIf="isAdmin"(click)="onOpenModal('delete', exp)" type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteExpModal" data-bs-whatever="@mdo"><i class="fa fa-times"></i></a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+
+  <div class="modal fade" id="addExpModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Nueva Exp</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form #addForm="ngForm" (ngSubmit)="onAddExp(addForm)">
+          <div class="form-group">
+             <label for="nomExp">Nombre Exp</label>
+             <input type="text" ngModel name="nomExp" class="form-control" id="nomExp" placeholder="Name" required>
+          </div>
+          <div class="form-group">
+             <label for="numSkill">Descripción</label>
+             <input type="text" ngModel name="descExp" class="form-control" id="descExp" placeholder="Description" required>
+          </div>
+          <div class="form-group">
+             <label for="nivelSkill">Link Web</label>
+             <input type="text" ngModel name="linkExp" class="form-control" id="linkExp" placeholder="Url" required>
+          </div>
+          <div class="form-group">
+             <label for="logoSkill">Link repositorio</label>
+             <input type="text" ngModel name="repoExp" class="form-control" id="repoExp" placeholder="Url repo" required>
+          </div>
+          <div class="modal-footer">
+             <button type="button" id="add-exp-form" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+             <button [disabled]="addForm.invalid" type="submit" class="btn btn-primary" >Save changes</button>
+          </div>
+          </form>
+       </div>
+      </div>
+    </div>
+  </div>
+  
+  <!--Editar-->
+  
+  <!-- Add Employee Modal -->
+  
+  <div class="modal fade" id="editExpModal" tabindex="-1" aria-labelledby="editExpModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editExpModalLabel">Editar Skill {{editarExp?.nomExp}}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form #editForm="ngForm">
+             <div class="form-group">
+                <label for="nomExp">Nombre</label>
+                <input type="text" ngModel="{{editarExp?.nomExp}}" name="nomExp" class="form-control" id="nomExp" placeholder="nomExp">
+             </div>
+             <input type="hidden" ngModel="{{editarExp?.idExp}}" name="idExp" class="form-control" id="idExp" placeholder="idExp">
+             <div class="form-group">
+                <label for="descExp">Descripción</label>
+                <input type="text" ngModel="{{editarExp?.descExp}}" name="descExp" class="form-control" id="descExp" placeholder="descExp">
+             </div>
+             <div class="form-group">
+                <label for="linkExp">Link web</label>
+                <input type="text" ngModel="{{editarExp?.linkExp}}" name="linkExp" class="form-control" id="linkExp" placeholder="linkExp">
+             </div>
+             <div class="form-group">
+                <label for="repoExp">Link repositorio</label>
+                <input type="text" ngModel="{{editarExp?.repoExp}}" name="repoExp" class="form-control" id="repoExp" placeholder="repoExp">
+             </div>
+             <div class="modal-footer">
+                <button type="button" id="" data-bs-dismiss="modal" class="btn btn-secondary">Close</button>
+                <button (click)="onUpdateExp(editForm.value)" data-bs-dismiss="modal" class="btn btn-primary" >Save changes</button>
+             </div>
+          </form>
+       </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Delete modal -->
+  <div class="modal fade" id="deleteExpModal" tabindex="-1" role="dialog" aria-labelledby="deleteExpLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+       <div class="modal-content">
+          <div class="modal-header">
+             <h5 class="modal-title" id="deleteExpLabel">Delete Skill</h5>
+             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+             <span aria-hidden="true">&times;</span>
+             </button>
+          </div>
+          <div class="modal-body">
+             <p>Estas seguro de borrar {{deleteExp?.nomExp}}?</p>
+             <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                <button (click)="onDeleteSkills(deleteExp!.idExp)" class="btn btn-danger" data-bs-dismiss="modal">Yes</button>
+             </div>
+          </div>
+       </div>
+    </div>
+  </div>

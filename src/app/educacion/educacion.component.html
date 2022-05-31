@@ -1,0 +1,120 @@
+<section id="educacion" class="gris">
+    <h1>Educacion</h1>
+    <button *ngIf="isAdmin" type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addEstModal" data-bs-whatever="@mdo">Nueva Educación</button>
+      <div class="card p-3" *ngFor="let estu of estt">
+        <div class="botonesSkills"><a  *ngIf="isAdmin"(click)="onOpenModal('edit', estu)" class="btn btn-primary " data-placementtype="button" data-bs-toggle="modal" data-bs-target="#editEstModal" data-bs-whatever="@mdo"><i class="fa fa-pencil"></i></a>
+          <a *ngIf="isAdmin"(click)="onOpenModal('delete', estu)" type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteEstModal" data-bs-whatever="@mdo"><i class="fa fa-times"></i></a></div>
+        <blockquote class="blockquote mb-0 card-body">
+          <p>{{estu.instEst}}</p>
+          <footer class="blockquote-footer">
+            <small class="text-muted">
+              {{estu.tituloEst}} <br> Estado: <cite title="Source Title">{{estu.estadoEst}}</cite>
+            </small>
+          </footer>
+          <img class="edu-ico" [src]="estu.logo" alt="">
+        </blockquote>
+      </div>
+  </section>
+
+
+
+   <!-- Add Employee Modal -->
+
+<div class="modal fade" id="addEstModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Nueva educacion</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form #addForm="ngForm" (ngSubmit)="onAddEst(addForm)">
+        <div class="form-group">
+           <label for="instEst">Nombre institución</label>
+           <input type="text" ngModel name="instEst" class="form-control" id="instEst" placeholder="Institución" required>
+        </div>
+        <div class="form-group">
+           <label for="tituloEst">Titulo</label>
+           <input type="text" ngModel name="tituloEst" class="form-control" id="tituloEst" placeholder="Titulo" required>
+        </div>
+        <div class="form-group">
+           <label for="estadoEst">Estado</label>
+           <input type="text" ngModel name="estadoEst" class="form-control" id="estadoEst" placeholder="Estado" required>
+        </div>
+        <div class="form-group">
+           <label for="logo">Logo de la institución</label>
+           <input type="text" ngModel name="logo" class="form-control" id="logo" placeholder="logo" required>
+        </div>
+        <div class="modal-footer">
+           <button type="button" id="add-employee-form" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+           <button [disabled]="addForm.invalid" type="submit" class="btn btn-primary" >Save changes</button>
+        </div>
+        </form>
+     </div>
+    </div>
+  </div>
+</div>
+  
+
+
+  <!--Editar-->
+  
+  <!-- Add Employee Modal -->
+  
+  <div class="modal fade" id="editEstModal" tabindex="-1" aria-labelledby="editEstModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editEstModalLabel">Editar educación {{editarEst?.instEst}}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form #editForm="ngForm">
+             <div class="form-group">
+                <label for="instEst">Nombre</label>
+                <input type="text" ngModel="{{editarEst?.instEst}}" name="instEst" class="form-control" id="instEst" placeholder="instEst">
+             </div>
+             <input type="hidden" ngModel="{{editarEst?.idEst}}" name="idEst" class="form-control" id="idEst" placeholder="idEst">
+             <div class="form-group">
+                <label for="tituloEst">Titulo</label>
+                <input type="text" ngModel="{{editarEst?.tituloEst}}" name="tituloEst" class="form-control" id="tituloEst" placeholder="tituloEst">
+             </div>
+             <div class="form-group">
+                <label for="estadoEst">Estado</label>
+                <input type="text" ngModel="{{editarEst?.estadoEst}}" name="estadoEst" class="form-control" id="estadoEst" placeholder="estadoEst">
+             </div>
+             <div class="form-group">
+                <label for="logo">logo</label>
+                <input type="text" ngModel="{{editarEst?.logo}}" name="logo" class="form-control" id="logo" placeholder="logo">
+             </div>
+             <div class="modal-footer">
+                <button type="button" id="" data-bs-dismiss="modal" class="btn btn-secondary">Close</button>
+                <button (click)="onUpdateEst(editForm.value)" data-bs-dismiss="modal" class="btn btn-primary" >Save changes</button>
+             </div>
+          </form>
+       </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Delete modal -->
+  <div class="modal fade" id="deleteEstModal" tabindex="-1" role="dialog" aria-labelledby="deleteEstLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+       <div class="modal-content">
+          <div class="modal-header">
+             <h5 class="modal-title" id="deleteEstLabel">Delete educacion</h5>
+             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+             <span aria-hidden="true">&times;</span>
+             </button>
+          </div>
+          <div class="modal-body">
+             <p>Estas seguro de borrar {{deleteEst?.instEst}}?</p>
+             <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                <button (click)="onDeleteEst(deleteEst!.idEst)" class="btn btn-danger" data-bs-dismiss="modal">Yes</button>
+             </div>
+          </div>
+       </div>
+    </div>
+  </div>
